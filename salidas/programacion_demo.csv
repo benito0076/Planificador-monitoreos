@@ -1,0 +1,65 @@
+﻿Fecha;Cuadrilla;Vehículo;Conductor;Integrantes;Equipos;Inicio;Fin;Duración (min);Actividad;Lugar;Km
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;07:30;07:49;19;Traslado (10.1 km);→ EF-01;10,1
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;07:49;09:00;71;Espera (ventana horaria);EF-01;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;09:00;09:40;40;Muestreo de efluente;EF-01 - Efluente planta industrial;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;09:40;10:01;22;Traslado (11.1 km);→ RU-01;11,1
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;10:01;10:31;30;Muestreo de ruido;RU-01 - Ruido ambiental - Cercado;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;10:31;11:06;34;Traslado (24.6 km);→ RU-02;24,6
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;11:06;11:36;30;Muestreo de ruido;RU-02 - Ruido ambiental - Villa El Salvador;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;11:36;12:29;54;Traslado (27.9 km);→ AG-05;27,9
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;12:29;12:39;10;Acceso a pie (ida y vuelta);AG-05;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;12:39;13:24;45;Almuerzo;AG-05;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;13:24;14:24;60;Muestreo de agua;AG-05 - Río Lurín - Cieneguilla;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;14:24;15:13;49;Traslado (30.0 km);→ SD-01;30,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;15:13;15:23;10;Acceso a pie (ida y vuelta);SD-01;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;15:23;16:08;45;Muestreo de sedimento;SD-01 - Sedimento Rímac - Huachipa;0,0
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;16:08;16:28;19;Retorno a base (15.2 km);Base Lima;15,2
+2026-09-30;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, María Torres;MULTI-01, SON-01;16:28;16:58;30;Descarga, preservación y registro de muestras;Base Lima;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;07:30;07:57;27;Traslado (19.8 km);→ AI-01;19,8
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;07:57;08:42;45;Instalación de equipo de aire (24 h);AI-01 - Calidad de aire PM10 - Ate;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;08:42;09:21;39;Traslado (26.6 km);→ AG-01;26,6
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;09:21;09:31;10;Acceso a pie (ida y vuelta);AG-01;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;09:31;10:31;60;Muestreo de agua;AG-01 - Río Rímac - Chosica;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;10:31;10:40;10;Traslado (5.4 km);→ AG-02;5,4
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;10:40;10:45;5;Acceso a pie (ida y vuelta);AG-02;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;10:45;11:45;60;Muestreo de agua;AG-02 - Río Rímac - Ricardo Palma;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;11:45;13:27;102;Traslado (57.3 km);→ SU-02;57,3
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;13:27;13:37;10;Acceso a pie (ida y vuelta);SU-02;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;13:37;14:22;45;Almuerzo;SU-02;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;14:22;15:22;60;Muestreo de suelo;SU-02 - Suelo - Pachacámac;0,0
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;15:22;16:20;58;Retorno a base (46.7 km);Base Lima;46,7
+2026-09-30;C2;XYZ-789;Pedro Huamán;Pedro Huamán, Rosa Flores, Carla Mendoza;BARR-01, MULTI-02, PM10-01;16:20;16:50;30;Descarga, preservación y registro de muestras;Base Lima;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;07:30;08:20;50;Traslado (38.8 km);→ SU-01;38,8
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;08:20;08:40;20;Acceso a pie (ida y vuelta);SU-01;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;08:40;09:40;60;Muestreo de suelo;SU-01 - Suelo - Lurín;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;09:40;10:28;48;Traslado (40.3 km);→ AI-01;40,3
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;10:28;10:58;30;Retiro de equipo y muestra de aire [PM10-01];AI-01 - Calidad de aire PM10 - Ate;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;10:58;11:55;57;Traslado (33.5 km);→ AG-03;33,5
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;11:55;12:20;25;Acceso a pie (ida y vuelta);AG-03;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;12:20;13:10;50;Muestreo de agua;AG-03 - Quebrada Santa Eulalia;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;13:10;13:55;45;Almuerzo;AG-03;0,0
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;13:55;15:10;76;Retorno a base (49.9 km);Base Lima;49,9
+2026-10-01;C1;ABC-123;Jorge Salas;Jorge Salas, Ana Quispe, Pedro Huamán;BARR-01, MULTI-01;15:10;15:40;30;Descarga, preservación y registro de muestras;Base Lima;0,0
+2026-10-01;C2;XYZ-789;Luis Rojas;Luis Rojas, Carla Mendoza, María Torres;PM10-02;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-10-01;C2;XYZ-789;Luis Rojas;Luis Rojas, Carla Mendoza, María Torres;PM10-02;07:30;07:50;21;Traslado (11.2 km);→ AI-02;11,2
+2026-10-01;C2;XYZ-789;Luis Rojas;Luis Rojas, Carla Mendoza, María Torres;PM10-02;07:50;08:35;45;Instalación de equipo de aire (24 h);AI-02 - Calidad de aire PM10 - Callao;0,0
+2026-10-01;C2;XYZ-789;Luis Rojas;Luis Rojas, Carla Mendoza, María Torres;PM10-02;08:35;08:58;23;Retorno a base (12.9 km);Base Lima;12,9
+2026-10-01;C2;XYZ-789;Luis Rojas;Luis Rojas, Carla Mendoza, María Torres;PM10-02;08:58;09:28;30;Descarga, preservación y registro de muestras;Base Lima;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;07:30;07:50;21;Traslado (11.2 km);→ AI-02;11,2
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;07:50;08:35;45;Espera (fin de exposición 24 h);AI-02;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;08:35;09:05;30;Retiro de equipo y muestra de aire [PM10-02];AI-02 - Calidad de aire PM10 - Callao;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;09:05;10:02;57;Traslado (36.8 km);→ AG-04;36,8
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;10:02;10:17;15;Acceso a pie (ida y vuelta);AG-04;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;10:17;11:17;60;Muestreo de agua;AG-04 - Río Chillón - Trapiche;0,0
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;11:17;12:01;44;Retorno a base (30.3 km);Base Lima;30,3
+2026-10-02;C1;ABC-123;Jorge Salas;Jorge Salas, Rosa Flores, Ana Quispe;MULTI-01;12:01;12:31;30;Descarga, preservación y registro de muestras;Base Lima;0,0
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;07:00;07:30;30;Preparación de equipos / charla de seguridad;Base Lima;0,0
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;07:30;08:34;64;Traslado (42.7 km);→ BI-01;42,7
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;08:34;09:04;30;Acceso a pie (ida y vuelta);BI-01;0,0
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;09:04;10:34;90;Muestreo de biologico;BI-01 - Hidrobiología - Lomas de Lúcumo;0,0
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;10:34;11:43;69;Retorno a base (49.0 km);Base Lima;49,0
+2026-10-03;C1;ABC-123;Luis Rojas;Luis Rojas, Ana Quispe, Carla Mendoza;;11:43;12:13;30;Descarga, preservación y registro de muestras;Base Lima;0,0

@@ -1,0 +1,157 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Planificador de Monitoreos Ambientales//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Demo
+BEGIN:VEVENT
+UID:20260929-091140-326d-20260930-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20260930T070000
+DTEND:20260930T165825
+SUMMARY:Monitoreo C1: EF-01\, RU-01\, RU-02\, AG-05\, SD-01
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, Ana Quispe\, María Torres\nEquipos: MULTI-01\, SON
+ -01\n\n07:00-07:30 Preparación de equipos / charla de seguridad · Base L
+ ima\n07:30-07:49 Traslado (10.1 km) · → EF-01\n07:49-09:00 Espera (vent
+ ana horaria) · EF-01\n09:00-09:40 Muestreo de efluente · EF-01 - Efluent
+ e planta industrial\n09:40-10:01 Traslado (11.1 km) · → RU-01\n10:01-10
+ :31 Muestreo de ruido · RU-01 - Ruido ambiental - Cercado\n10:31-11:06 Tr
+ aslado (24.6 km) · → RU-02\n11:06-11:36 Muestreo de ruido · RU-02 - Ru
+ ido ambiental - Villa El Salvador\n11:36-12:29 Traslado (27.9 km) · → A
+ G-05\n12:29-12:39 Acceso a pie (ida y vuelta) · AG-05\n12:39-13:24 Almuer
+ zo · AG-05\n13:24-14:24 Muestreo de agua · AG-05 - Río Lurín - Cienegu
+ illa\n14:24-15:13 Traslado (30.0 km) · → SD-01\n15:13-15:23 Acceso a pi
+ e (ida y vuelta) · SD-01\n15:23-16:08 Muestreo de sedimento · SD-01 - Se
+ dimento Rímac - Huachipa\n16:08-16:28 Retorno a base (15.2 km) · → Bas
+ e Lima\n16:28-16:58 Descarga\, preservación y registro de muestras · Bas
+ e Lima\n\nRuta: https://www.google.com/maps/dir/-12.0464\,-77.0428/-12.06\
+ ,-77.12/-12.055\,-77.035/-12.213\,-76.937/-12.11\,-76.81/-12.017\,-76.93/-
+ 12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261001-C2@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261001T070000
+DTEND:20261001T115322
+SUMMARY:Monitoreo C2: SU-02\, AI-01
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C2 · vehículo XYZ-789\nConductor: Luis Rojas\nInteg
+ rantes: Luis Rojas\, Carla Mendoza\, María Torres\nEquipos: BARR-01\n\n07
+ :00-07:30 Preparación de equipos / charla de seguridad · Base Lima\n07:3
+ 0-08:23 Traslado (40.4 km) · → SU-02\n08:23-08:33 Acceso a pie (ida y v
+ uelta) · SU-02\n08:33-09:33 Muestreo de suelo · SU-02 - Suelo - Pachacá
+ mac\n09:33-10:27 Traslado (42.4 km) · → AI-01\n10:27-10:57 Retiro de eq
+ uipo y muestra de aire [PM10-01] · AI-01 - Calidad de aire PM10 - Ate\n10
+ :57-11:23 Retorno a base (19.1 km) · → Base Lima\n11:23-11:53 Descarga\
+ , preservación y registro de muestras · Base Lima\n\nRuta: https://www.g
+ oogle.com/maps/dir/-12.0464\,-77.0428/-12.23\,-76.86/-12.026\,-76.918/-12.
+ 0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Luis Rojas;ROLE=REQ-PARTICIPANT:mailto:luis.rojas@example.com
+ATTENDEE;CN=Carla Mendoza;ROLE=REQ-PARTICIPANT:mailto:carla.mendoza@example
+ .com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261002-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261002T070000
+DTEND:20261002T142346
+SUMMARY:Monitoreo C1: BI-01\, SU-01
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, María Torres\, Ana Quispe\nEquipos: BARR-01\n\n07:
+ 00-07:30 Preparación de equipos / charla de seguridad · Base Lima\n07:30
+ -08:34 Traslado (42.7 km) · → BI-01\n08:34-09:04 Acceso a pie (ida y vu
+ elta) · BI-01\n09:04-10:34 Muestreo de biologico · BI-01 - Hidrobiologí
+ a - Lomas de Lúcumo\n10:34-10:56 Traslado (8.8 km) · → SU-01\n10:56-11
+ :16 Acceso a pie (ida y vuelta) · SU-01\n11:16-12:16 Muestreo de suelo ·
+  SU-01 - Suelo - Lurín\n12:16-13:08 Retorno a base (44.6 km) · → Base 
+ Lima\n13:08-13:53 Almuerzo · Base Lima\n13:53-14:23 Descarga\, preservaci
+ ón y registro de muestras · Base Lima\n\nRuta: https://www.google.com/ma
+ ps/dir/-12.0464\,-77.0428/-12.24\,-76.83/-12.275\,-76.87/-12.0464\,-77.042
+ 8
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261005-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261005T070000
+DTEND:20261005T144609
+SUMMARY:Monitoreo C1: AG-06\, SU-03
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, María Torres\, Rosa Flores\nEquipos: BARR-01\, MUL
+ TI-01\n\n07:00-07:30 Preparación de equipos / charla de seguridad · Base
+  Lima\n07:30-11:13 Traslado (196.2 km) · → AG-06\n11:13-11:28 Acceso a 
+ pie (ida y vuelta) · AG-06\n11:28-12:28 Muestreo de agua · AG-06 - Río 
+ Huaura - Churín\n12:28-12:34 Traslado (3.3 km) · → SU-03\n12:34-12:54 
+ Acceso a pie (ida y vuelta) · SU-03\n12:54-13:39 Almuerzo · SU-03\n13:39
+ -14:39 Muestreo de suelo · SU-03 - Suelo agrícola - Pachangara\n14:39-14
+ :46 Traslado a alojamiento (4.2 km) · → Hotel Churín\n14:46-14:46 Pern
+ octe · Hotel Churín\n\nPERNOCTE en Hotel Churín\n\nRuta: https://www.go
+ ogle.com/maps/dir/-12.0464\,-77.0428/-10.809\,-76.88/-10.795\,-76.86/-10.8
+ 125\,-76.8747
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+ATTENDEE;CN=Rosa Flores;ROLE=REQ-PARTICIPANT:mailto:rosa.flores@example.com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261006-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261006T070000
+DTEND:20261006T112726
+SUMMARY:Monitoreo C1: retorno desde Hotel Churín
+LOCATION:Hotel Churín
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, María Torres\, Rosa Flores\nEquipos: BARR-01\, MUL
+ TI-01\n\n07:00-07:20 Desayuno y alistamiento · Hotel Churín\n07:20-10:57
+  Retorno a base (191.2 km) · → Base Lima\n10:57-11:27 Descarga\, preser
+ vación y registro de muestras · Base Lima\n\nRuta: https://www.google.co
+ m/maps/dir/-10.8125\,-76.8747/-12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+ATTENDEE;CN=Rosa Flores;ROLE=REQ-PARTICIPANT:mailto:rosa.flores@example.com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
