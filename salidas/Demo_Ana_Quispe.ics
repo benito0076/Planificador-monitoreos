@@ -1,0 +1,105 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Planificador de Monitoreos Ambientales//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Demo
+BEGIN:VEVENT
+UID:20260929-091140-326d-20260930-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20260930T070000
+DTEND:20260930T165825
+SUMMARY:Monitoreo C1: EF-01\, RU-01\, RU-02\, AG-05\, SD-01
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, Ana Quispe\, María Torres\nEquipos: MULTI-01\, SON
+ -01\n\n07:00-07:30 Preparación de equipos / charla de seguridad · Base L
+ ima\n07:30-07:49 Traslado (10.1 km) · → EF-01\n07:49-09:00 Espera (vent
+ ana horaria) · EF-01\n09:00-09:40 Muestreo de efluente · EF-01 - Efluent
+ e planta industrial\n09:40-10:01 Traslado (11.1 km) · → RU-01\n10:01-10
+ :31 Muestreo de ruido · RU-01 - Ruido ambiental - Cercado\n10:31-11:06 Tr
+ aslado (24.6 km) · → RU-02\n11:06-11:36 Muestreo de ruido · RU-02 - Ru
+ ido ambiental - Villa El Salvador\n11:36-12:29 Traslado (27.9 km) · → A
+ G-05\n12:29-12:39 Acceso a pie (ida y vuelta) · AG-05\n12:39-13:24 Almuer
+ zo · AG-05\n13:24-14:24 Muestreo de agua · AG-05 - Río Lurín - Cienegu
+ illa\n14:24-15:13 Traslado (30.0 km) · → SD-01\n15:13-15:23 Acceso a pi
+ e (ida y vuelta) · SD-01\n15:23-16:08 Muestreo de sedimento · SD-01 - Se
+ dimento Rímac - Huachipa\n16:08-16:28 Retorno a base (15.2 km) · → Bas
+ e Lima\n16:28-16:58 Descarga\, preservación y registro de muestras · Bas
+ e Lima\n\nRuta: https://www.google.com/maps/dir/-12.0464\,-77.0428/-12.06\
+ ,-77.12/-12.055\,-77.035/-12.213\,-76.937/-12.11\,-76.81/-12.017\,-76.93/-
+ 12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261001-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261001T070000
+DTEND:20261001T165741
+SUMMARY:Monitoreo C1: AI-02\, AG-04\, AG-03
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, Ana Quispe\, Pedro Huamán\nEquipos: MULTI-01\n\n07
+ :00-07:30 Preparación de equipos / charla de seguridad · Base Lima\n07:3
+ 0-07:50 Traslado (11.2 km) · → AI-02\n07:50-08:35 Espera (fin de exposi
+ ción 24 h) · AI-02\n08:35-09:05 Retiro de equipo y muestra de aire [PM10
+ -02] · AI-02 - Calidad de aire PM10 - Callao\n09:05-10:02 Traslado (36.8 
+ km) · → AG-04\n10:02-10:17 Acceso a pie (ida y vuelta) · AG-04\n10:17-
+ 11:17 Muestreo de agua · AG-04 - Río Chillón - Trapiche\n11:17-13:11 Tr
+ aslado (77.7 km) · → AG-03\n13:11-13:36 Acceso a pie (ida y vuelta) · 
+ AG-03\n13:36-14:21 Almuerzo · AG-03\n14:21-15:11 Muestreo de agua · AG-0
+ 3 - Quebrada Santa Eulalia\n15:11-16:27 Retorno a base (49.9 km) · → Ba
+ se Lima\n16:27-16:57 Descarga\, preservación y registro de muestras · Ba
+ se Lima\n\nRuta: https://www.google.com/maps/dir/-12.0464\,-77.0428/-12.05
+ \,-77.13/-11.813\,-76.99/-11.895\,-76.665/-12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+ATTENDEE;CN=Pedro Huamán;ROLE=REQ-PARTICIPANT:mailto:pedro.huaman@example.
+ com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261002-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261002T070000
+DTEND:20261002T142346
+SUMMARY:Monitoreo C1: BI-01\, SU-01
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, María Torres\, Ana Quispe\nEquipos: BARR-01\n\n07:
+ 00-07:30 Preparación de equipos / charla de seguridad · Base Lima\n07:30
+ -08:34 Traslado (42.7 km) · → BI-01\n08:34-09:04 Acceso a pie (ida y vu
+ elta) · BI-01\n09:04-10:34 Muestreo de biologico · BI-01 - Hidrobiologí
+ a - Lomas de Lúcumo\n10:34-10:56 Traslado (8.8 km) · → SU-01\n10:56-11
+ :16 Acceso a pie (ida y vuelta) · SU-01\n11:16-12:16 Muestreo de suelo ·
+  SU-01 - Suelo - Lurín\n12:16-13:08 Retorno a base (44.6 km) · → Base 
+ Lima\n13:08-13:53 Almuerzo · Base Lima\n13:53-14:23 Descarga\, preservaci
+ ón y registro de muestras · Base Lima\n\nRuta: https://www.google.com/ma
+ ps/dir/-12.0464\,-77.0428/-12.24\,-76.83/-12.275\,-76.87/-12.0464\,-77.042
+ 8
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=María Torres;ROLE=REQ-PARTICIPANT:mailto:maria.torres@example.
+ com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

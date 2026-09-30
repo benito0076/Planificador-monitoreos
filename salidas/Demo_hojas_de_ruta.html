@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hojas de ruta · Demo</title>
+<style>
+  body { font: 14px/1.4 system-ui, Segoe UI, sans-serif; color: #1c2b27; background: #f4f6f5; margin: 0; padding: 16px; }
+  section { background: #fff; max-width: 960px; margin: 0 auto 24px; padding: 20px 24px; border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  h1 { max-width: 960px; margin: 0 auto 16px; font-size: 20px; }
+  h2 { margin: 0; font-size: 18px; color: #1f6f5c; }
+  .sub { margin: 2px 0 0; color: #5a6b66; }
+  .btn { background: #1f6f5c; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; }
+  .avisos { background: #fdecea; color: #8a1c12; border-radius: 6px; padding: 8px 8px 8px 28px; margin: 12px 0 0; }
+  dl { display: grid; grid-template-columns: 110px 1fr; gap: 2px 12px; margin: 14px 0; }
+  dt { font-weight: 600; color: #5a6b66; } dd { margin: 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border-bottom: 1px solid #dde3e1; padding: 5px 6px; text-align: left; vertical-align: top; }
+  th { background: #eef3f1; font-size: 12px; text-transform: uppercase; color: #5a6b66; }
+  tr.muestra td { background: #f0f8f5; font-weight: 600; }
+  .nota { font-weight: 400; font-size: 12px; color: #5a6b66; }
+  td.chk { width: 28px; border-left: 1px solid #dde3e1; }
+  a { color: #1f6f5c; }
+  .firmas { display: flex; gap: 40px; margin-top: 48px; }
+  .firmas div { flex: 1; border-top: 1px solid #1c2b27; padding-top: 4px; text-align: center; color: #5a6b66; }
+  @media print { body { background: #fff; padding: 0; } h1, .btn { display: none; }
+                  section { box-shadow: none; page-break-after: always; margin: 0; max-width: none; } }
+  @media (max-width: 600px) { section { padding: 14px; } dl { grid-template-columns: 1fr; } }
+</style></head><body>
+<h1>Hojas de ruta · Demo</h1>
+
+<section>
+  <header>
+    <div><h2>Mié 30/09/2026 · Cuadrilla C1</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 16:58 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-12.06,-77.12/-12.055,-77.035/-12.213,-76.937/-12.11,-76.81/-12.017,-76.93/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>ABC-123 · Hilux 4x4</dd>
+    <dt>Conductor</dt><dd>Jorge Salas</dd>
+    <dt>Integrantes</dt><dd>Jorge Salas, Ana Quispe, María Torres</dd>
+    <dt>Equipos</dt><dd>MULTI-01, SON-01</dd>
+    <dt>Recorrido</dt><dd>118.8 km · ~12.5 L · S/ 483.78</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>07:49</td><td>Traslado (10.1 km)</td><td>→ EF-01</td><td></td><td class='chk'></td></tr><tr class=''><td>07:49</td><td>09:00</td><td>Espera (ventana horaria)</td><td>EF-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>09:00</td><td>09:40</td><td>Muestreo de efluente<div class='nota'>-12.06000, -77.12000 · ventana 09:00–12:00 · equipos: multiparametro</div></td><td>EF-01 - Efluente planta industrial</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.06,-77.12&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>09:40</td><td>10:01</td><td>Traslado (11.1 km)</td><td>→ RU-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>10:01</td><td>10:31</td><td>Muestreo de ruido<div class='nota'>-12.05500, -77.03500 · ventana 07:00–22:00 · equipos: sonometro</div></td><td>RU-01 - Ruido ambiental - Cercado</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.055,-77.035&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>10:31</td><td>11:06</td><td>Traslado (24.6 km)</td><td>→ RU-02</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>11:06</td><td>11:36</td><td>Muestreo de ruido<div class='nota'>-12.21300, -76.93700 · equipos: sonometro</div></td><td>RU-02 - Ruido ambiental - Villa El Salvador</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.213,-76.937&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>11:36</td><td>12:29</td><td>Traslado (27.9 km)</td><td>→ AG-05</td><td></td><td class='chk'></td></tr><tr class=''><td>12:29</td><td>12:39</td><td>Acceso a pie (ida y vuelta)</td><td>AG-05</td><td></td><td class='chk'></td></tr><tr class=''><td>12:39</td><td>13:24</td><td>Almuerzo</td><td>AG-05</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>13:24</td><td>14:24</td><td>Muestreo de agua<div class='nota'>-12.11000, -76.81000 · equipos: multiparametro</div></td><td>AG-05 - Río Lurín - Cieneguilla</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.11,-76.81&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>14:24</td><td>15:13</td><td>Traslado (30.0 km)</td><td>→ SD-01</td><td></td><td class='chk'></td></tr><tr class=''><td>15:13</td><td>15:23</td><td>Acceso a pie (ida y vuelta)</td><td>SD-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>15:23</td><td>16:08</td><td>Muestreo de sedimento<div class='nota'>-12.01700, -76.93000</div></td><td>SD-01 - Sedimento Rímac - Huachipa</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.017,-76.93&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>16:08</td><td>16:28</td><td>Retorno a base (15.2 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>16:28</td><td>16:58</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Mié 30/09/2026 · Cuadrilla C2</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 16:14 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-12.05,-77.13/-12.026,-76.918/-11.9386,-76.697/-11.918,-76.66/-12.097,-77.0365/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>XYZ-789 · Camioneta 4x2</dd>
+    <dt>Conductor</dt><dd>Pedro Huamán</dd>
+    <dt>Integrantes</dt><dd>Pedro Huamán, Rosa Flores, Carla Mendoza</dd>
+    <dt>Equipos</dt><dd>MULTI-02, PM10-01, PM10-02</dd>
+    <dt>Recorrido</dt><dd>129.9 km · ~11.8 L · S/ 410.77</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>07:50</td><td>Traslado (11.2 km)</td><td>→ AI-02</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>07:50</td><td>08:35</td><td>Instalación de equipo de aire (24 h)<div class='nota'>-12.05000, -77.13000 · equipos: muestreador_pm10</div></td><td>AI-02 - Calidad de aire PM10 - Callao</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.05,-77.13&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>08:35</td><td>09:17</td><td>Traslado (28.9 km)</td><td>→ AI-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>09:17</td><td>10:02</td><td>Instalación de equipo de aire (24 h)<div class='nota'>-12.02600, -76.91800 · equipos: muestreador_pm10</div></td><td>AI-01 - Calidad de aire PM10 - Ate</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.026,-76.918&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>10:02</td><td>10:40</td><td>Traslado (26.6 km)</td><td>→ AG-01</td><td></td><td class='chk'></td></tr><tr class=''><td>10:40</td><td>10:50</td><td>Acceso a pie (ida y vuelta)</td><td>AG-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>10:50</td><td>11:50</td><td>Muestreo de agua<div class='nota'>-11.93860, -76.69700 · preservar ≤ 8 h · entregar al laboratorio · equipos: multiparametro</div></td><td>AG-01 - Río Rímac - Chosica</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-11.9386,-76.697&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>11:50</td><td>12:00</td><td>Traslado (5.4 km)</td><td>→ AG-02</td><td></td><td class='chk'></td></tr><tr class=''><td>12:00</td><td>12:05</td><td>Acceso a pie (ida y vuelta)</td><td>AG-02</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>12:05</td><td>13:05</td><td>Muestreo de agua<div class='nota'>-11.91800, -76.66000 · entregar al laboratorio · equipos: multiparametro</div></td><td>AG-02 - Río Rímac - Ricardo Palma</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-11.918,-76.66&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>13:05</td><td>13:50</td><td>Almuerzo</td><td>AG-02</td><td></td><td class='chk'></td></tr><tr class=''><td>13:50</td><td>15:04</td><td>Traslado al laboratorio (48.0 km)</td><td>→ Laboratorio acreditado (San Isidro)</td><td></td><td class='chk'></td></tr><tr class=''><td>15:04</td><td>15:24</td><td>Entrega de muestras al laboratorio</td><td>Laboratorio acreditado (San Isidro)</td><td></td><td class='chk'></td></tr><tr class=''><td>15:24</td><td>15:44</td><td>Retorno a base (9.8 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>15:44</td><td>16:14</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Jue 01/10/2026 · Cuadrilla C1</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 16:57 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-12.05,-77.13/-11.813,-76.99/-11.895,-76.665/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>ABC-123 · Hilux 4x4</dd>
+    <dt>Conductor</dt><dd>Jorge Salas</dd>
+    <dt>Integrantes</dt><dd>Jorge Salas, Ana Quispe, Pedro Huamán</dd>
+    <dt>Equipos</dt><dd>MULTI-01</dd>
+    <dt>Recorrido</dt><dd>175.6 km · ~18.5 L · S/ 509.49</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>07:50</td><td>Traslado (11.2 km)</td><td>→ AI-02</td><td></td><td class='chk'></td></tr><tr class=''><td>07:50</td><td>08:35</td><td>Espera (fin de exposición 24 h)</td><td>AI-02</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>08:35</td><td>09:05</td><td>Retiro de equipo y muestra de aire [PM10-02]<div class='nota'>-12.05000, -77.13000</div></td><td>AI-02 - Calidad de aire PM10 - Callao</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.05,-77.13&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>09:05</td><td>10:02</td><td>Traslado (36.8 km)</td><td>→ AG-04</td><td></td><td class='chk'></td></tr><tr class=''><td>10:02</td><td>10:17</td><td>Acceso a pie (ida y vuelta)</td><td>AG-04</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>10:17</td><td>11:17</td><td>Muestreo de agua<div class='nota'>-11.81300, -76.99000 · equipos: multiparametro · acceso 4x4</div></td><td>AG-04 - Río Chillón - Trapiche</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-11.813,-76.99&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>11:17</td><td>13:11</td><td>Traslado (77.7 km)</td><td>→ AG-03</td><td></td><td class='chk'></td></tr><tr class=''><td>13:11</td><td>13:36</td><td>Acceso a pie (ida y vuelta)</td><td>AG-03</td><td></td><td class='chk'></td></tr><tr class=''><td>13:36</td><td>14:21</td><td>Almuerzo</td><td>AG-03</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>14:21</td><td>15:11</td><td>Muestreo de agua<div class='nota'>-11.89500, -76.66500 · equipos: multiparametro · acceso 4x4</div></td><td>AG-03 - Quebrada Santa Eulalia</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-11.895,-76.665&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>15:11</td><td>16:27</td><td>Retorno a base (49.9 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>16:27</td><td>16:57</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Jue 01/10/2026 · Cuadrilla C2</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 11:53 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-12.23,-76.86/-12.026,-76.918/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>XYZ-789 · Camioneta 4x2</dd>
+    <dt>Conductor</dt><dd>Luis Rojas</dd>
+    <dt>Integrantes</dt><dd>Luis Rojas, Carla Mendoza, María Torres</dd>
+    <dt>Equipos</dt><dd>BARR-01</dd>
+    <dt>Recorrido</dt><dd>101.9 km · ~9.3 L · S/ 399.84</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>08:23</td><td>Traslado (40.4 km)</td><td>→ SU-02</td><td></td><td class='chk'></td></tr><tr class=''><td>08:23</td><td>08:33</td><td>Acceso a pie (ida y vuelta)</td><td>SU-02</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>08:33</td><td>09:33</td><td>Muestreo de suelo<div class='nota'>-12.23000, -76.86000 · equipos: barreno</div></td><td>SU-02 - Suelo - Pachacámac</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.23,-76.86&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>09:33</td><td>10:27</td><td>Traslado (42.4 km)</td><td>→ AI-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>10:27</td><td>10:57</td><td>Retiro de equipo y muestra de aire [PM10-01]<div class='nota'>-12.02600, -76.91800</div></td><td>AI-01 - Calidad de aire PM10 - Ate</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.026,-76.918&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>10:57</td><td>11:23</td><td>Retorno a base (19.1 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>11:23</td><td>11:53</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Vie 02/10/2026 · Cuadrilla C1</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 14:23 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-12.24,-76.83/-12.275,-76.87/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>ABC-123 · Hilux 4x4</dd>
+    <dt>Conductor</dt><dd>Jorge Salas</dd>
+    <dt>Integrantes</dt><dd>Jorge Salas, María Torres, Ana Quispe</dd>
+    <dt>Equipos</dt><dd>BARR-01</dd>
+    <dt>Recorrido</dt><dd>96.0 km · ~10.1 L · S/ 473.46</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>08:34</td><td>Traslado (42.7 km)</td><td>→ BI-01</td><td></td><td class='chk'></td></tr><tr class=''><td>08:34</td><td>09:04</td><td>Acceso a pie (ida y vuelta)</td><td>BI-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>09:04</td><td>10:34</td><td>Muestreo de biologico<div class='nota'>-12.24000, -76.83000 · acceso 4x4</div></td><td>BI-01 - Hidrobiología - Lomas de Lúcumo</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.24,-76.83&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>10:34</td><td>10:56</td><td>Traslado (8.8 km)</td><td>→ SU-01</td><td></td><td class='chk'></td></tr><tr class=''><td>10:56</td><td>11:16</td><td>Acceso a pie (ida y vuelta)</td><td>SU-01</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>11:16</td><td>12:16</td><td>Muestreo de suelo<div class='nota'>-12.27500, -76.87000 · equipos: barreno · acceso 4x4</div></td><td>SU-01 - Suelo - Lurín</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-12.275,-76.87&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>12:16</td><td>13:08</td><td>Retorno a base (44.6 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>13:08</td><td>13:53</td><td>Almuerzo</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>13:53</td><td>14:23</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Lun 05/10/2026 · Cuadrilla C1</h2>
+    <p class="sub">Sale de Base Lima · 07:00 → fin 14:46 en Hotel Churín</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-12.0464,-77.0428/-10.809,-76.88/-10.795,-76.86/-10.8125,-76.8747" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>ABC-123 · Hilux 4x4</dd>
+    <dt>Conductor</dt><dd>Jorge Salas</dd>
+    <dt>Integrantes</dt><dd>Jorge Salas, María Torres, Rosa Flores</dd>
+    <dt>Equipos</dt><dd>BARR-01, MULTI-01</dd><dt>Pernocte</dt><dd>Hotel Churín (salida V1)</dd>
+    <dt>Recorrido</dt><dd>203.7 km · ~21.4 L · S/ 732.18</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:30</td><td>Preparación de equipos / charla de seguridad</td><td>Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>07:30</td><td>11:13</td><td>Traslado (196.2 km)</td><td>→ AG-06</td><td></td><td class='chk'></td></tr><tr class=''><td>11:13</td><td>11:28</td><td>Acceso a pie (ida y vuelta)</td><td>AG-06</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>11:28</td><td>12:28</td><td>Muestreo de agua<div class='nota'>-10.80900, -76.88000 · equipos: multiparametro · acceso 4x4</div></td><td>AG-06 - Río Huaura - Churín</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-10.809,-76.88&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>12:28</td><td>12:34</td><td>Traslado (3.3 km)</td><td>→ SU-03</td><td></td><td class='chk'></td></tr><tr class=''><td>12:34</td><td>12:54</td><td>Acceso a pie (ida y vuelta)</td><td>SU-03</td><td></td><td class='chk'></td></tr><tr class=''><td>12:54</td><td>13:39</td><td>Almuerzo</td><td>SU-03</td><td></td><td class='chk'></td></tr><tr class='muestra'><td>13:39</td><td>14:39</td><td>Muestreo de suelo<div class='nota'>-10.79500, -76.86000 · equipos: barreno · acceso 4x4</div></td><td>SU-03 - Suelo agrícola - Pachangara</td><td><a href='https://www.google.com/maps/dir/?api=1&destination=-10.795,-76.86&travelmode=driving' target='_blank'>Navegar</a></td><td class='chk'></td></tr><tr class=''><td>14:39</td><td>14:46</td><td>Traslado a alojamiento (4.2 km)</td><td>→ Hotel Churín</td><td></td><td class='chk'></td></tr><tr class=''><td>14:46</td><td>14:46</td><td>Pernocte</td><td>Hotel Churín</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+<section>
+  <header>
+    <div><h2>Mar 06/10/2026 · Cuadrilla C1</h2>
+    <p class="sub">Sale de Hotel Churín · 07:00 → fin 11:27 en Base Lima</p></div>
+    <a class="btn" href="https://www.google.com/maps/dir/-10.8125,-76.8747/-12.0464,-77.0428" target="_blank">Ruta completa en Google Maps</a>
+  </header>
+  
+  <dl>
+    <dt>Vehículo</dt><dd>ABC-123 · Hilux 4x4</dd>
+    <dt>Conductor</dt><dd>Jorge Salas</dd>
+    <dt>Integrantes</dt><dd>Jorge Salas, María Torres, Rosa Flores</dd>
+    <dt>Equipos</dt><dd>BARR-01, MULTI-01</dd>
+    <dt>Recorrido</dt><dd>191.2 km · ~20.1 L · S/ 516.53</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Inicio</th><th>Fin</th><th>Actividad</th><th>Lugar</th><th></th><th>✓</th></tr></thead>
+    <tbody><tr class=''><td>07:00</td><td>07:20</td><td>Desayuno y alistamiento</td><td>Hotel Churín</td><td></td><td class='chk'></td></tr><tr class=''><td>07:20</td><td>10:57</td><td>Retorno a base (191.2 km)</td><td>→ Base Lima</td><td></td><td class='chk'></td></tr><tr class=''><td>10:57</td><td>11:27</td><td>Descarga, preservación y registro de muestras</td><td>Base Lima</td><td></td><td class='chk'></td></tr></tbody>
+  </table>
+  <div class="firmas"><div>Responsable de cuadrilla</div><div>Supervisor</div></div>
+</section>
+</body></html>

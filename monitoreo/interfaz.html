@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planificador de Monitoreos</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--bg:#f6f7f9;--panel:#fff;--text:#1f2937;--muted:#6b7280;--line:#e5e7eb;--accent:#0f766e;--accent-soft:#ccfbf1;
+--warn:#b45309;--warn-soft:#fef3c7;--bad:#b91c1c;--bad-soft:#fee2e2;--ok:#15803d;--ok-soft:#dcfce7;--input:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#111418;--panel:#1a1f25;--text:#e5e7eb;--muted:#9ca3af;--line:#2d333b;
+--accent:#2dd4bf;--accent-soft:#134e4a;--warn:#fbbf24;--warn-soft:#422006;--bad:#f87171;--bad-soft:#450a0a;--ok:#4ade80;
+--ok-soft:#052e16;--input:#0f1317}}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+header{display:flex;align-items:center;gap:16px;padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--line);
+position:sticky;top:0;z-index:1000;flex-wrap:wrap}
+header h1{font-size:16px;margin:0;font-weight:650}
+nav{display:flex;gap:2px;flex-wrap:wrap}
+nav button{background:none;border:0;padding:7px 11px;border-radius:6px;color:var(--muted);cursor:pointer;font:inherit}
+nav button:hover{background:var(--bg)}
+nav button.activo{background:var(--accent-soft);color:var(--accent);font-weight:600}
+main{padding:20px;max-width:1400px;margin:0 auto}
+h2{font-size:18px;margin:0 0 12px}
+h3{font-size:15px;margin:18px 0 8px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+.fila{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.entre{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+button,.boton{font:inherit;padding:6px 12px;border-radius:6px;border:1px solid var(--line);background:var(--panel);
+color:var(--text);cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.boton:hover{border-color:var(--accent)}
+button.primario{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){button.primario{color:#042f2e}}
+button.peligro{color:var(--bad)}
+button.mini{padding:2px 7px;font-size:12px}
+button:disabled{opacity:.5;cursor:default}
+input,select,textarea{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--input);color:var(--text)}
+input[type=checkbox]{width:auto}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+tr.clic{cursor:pointer}tr.clic:hover td{background:var(--bg)}
+.tabla-scroll{overflow-x:auto}
+.muted{color:var(--muted)}.chico{font-size:12px}
+.chip{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;background:var(--bg);border:1px solid var(--line);margin:1px}
+.vencido{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.proximo{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.ok{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.aviso{background:var(--warn-soft);color:var(--warn);padding:6px 10px;border-radius:6px;margin:4px 0;font-size:13px}
+.error{background:var(--bad-soft);color:var(--bad);padding:8px 12px;border-radius:6px;margin:6px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kpi{background:var(--bg);border-radius:8px;padding:10px 12px}
+.kpi b{display:block;font-size:20px}
+.kpi span{color:var(--muted);font-size:12px}
+.mapa{height:420px;border-radius:8px;border:1px solid var(--line)}
+.mapa-mini{height:260px;border-radius:8px;border:1px solid var(--line);margin-top:6px}
+dialog{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--panel);color:var(--text);
+width:min(760px,96vw);max-height:92vh}
+dialog::backdrop{background:rgba(0,0,0,.4)}
+.dlg-cab{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.dlg-cuerpo{padding:14px 18px;overflow:auto;max-height:calc(92vh - 130px)}
+.dlg-pie{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+.form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 16px}
+@media (max-width:640px){.form{grid-template-columns:1fr}}
+.form label{display:flex;flex-direction:column;gap:3px;font-size:13px}
+.form label>span{color:var(--muted)}
+.form .ancho{grid-column:1/-1}
+.form input,.form select,.form textarea{width:100%}
+.checks{display:flex;flex-wrap:wrap;gap:4px 12px}
+.checks label{flex-direction:row;align-items:center;gap:4px;color:var(--text)}
+.dia{border-left:4px solid var(--c);padding-left:12px}
+.dia-cab{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:flex-start}
+.tareas{width:100%;table-layout:fixed}.tareas td{padding:4px 6px}
+.tareas td:nth-child(1){width:64px}.tareas td:nth-child(2){width:30%}.tareas td:nth-child(3){width:130px}
+.tareas td:nth-child(4){width:110px}.tareas td:nth-child(6){width:150px}.tareas select{max-width:100%}
+.tareas input,.tareas select{padding:3px 6px;font-size:13px}
+details summary{cursor:pointer;color:var(--muted);font-size:13px;margin:6px 0}
+.linea-tiempo td{padding:2px 6px;font-size:12px;border:0}
+#toast{position:fixed;bottom:20px;right:20px;background:var(--text);color:var(--bg);padding:10px 16px;border-radius:8px;
+opacity:0;transition:opacity .2s;z-index:3000;max-width:420px;pointer-events:none}
+#toast.visible{opacity:1}
+.cargando{opacity:.6;pointer-events:none}
+.sucio{color:var(--warn);font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <h1>Planificador de Monitoreos</h1>
+  <nav id="nav"></nav>
+</header>
+<main id="main"></main>
+<dialog id="dlg"><div class="dlg-cab"><b id="dlg-titulo"></b><button class="mini" onclick="dlg.close()">✕</button></div>
+<div class="dlg-cuerpo" id="dlg-cuerpo"></div><div class="dlg-pie" id="dlg-pie"></div></dialog>
+<div id="toast"></div>
+<script>
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const h = (tag, attrs = {}, ...hijos) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else if (k === "html") e.innerHTML = v;
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const x of hijos.flat()) if (x != null) e.append(x.nodeType ? x : document.createTextNode(x));
+  return e;
+};
+const dlg = $("#dlg");
+let E = null, D = null;  // esquemas y datos
+const estado = {vista: "inicio", prog: null, sucio: false};
+
+function toast(msg, ms = 3500) {
+  const t = $("#toast"); t.textContent = msg; t.classList.add("visible");
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("visible"), ms);
+}
+async function api(metodo, ruta, cuerpo) {
+  const r = await fetch("/api/" + ruta, {method: metodo, headers: {"Content-Type": "application/json"},
+    body: cuerpo === undefined ? undefined : JSON.stringify(cuerpo)});
+  const j = await r.json().catch(() => ({error: "Respuesta no válida del servidor"}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+async function conCarga(el, fn) {
+  el?.classList.add("cargando");
+  try { return await fn(); } catch (e) { toast("⚠ " + e.message, 6000); throw e; }
+  finally { el?.classList.remove("cargando"); }
+}
+const moneda = () => D.config.moneda;
+const dinero = n => `${moneda()} ${Number(n).toLocaleString("es-CO", {maximumFractionDigits: 0})}`;
+const fechaCorta = iso => iso ? iso.split("-").reverse().join("/") : "—";
+
+// ------------------------------------------------------------------------- //
+// Navegación
+// ------------------------------------------------------------------------- //
+const VISTAS = [["inicio", "Inicio"], ["puntos", "Puntos"], ["personal", "Personal"], ["vehiculos", "Vehículos"],
+  ["equipos", "Equipos"], ["alojamientos", "Alojamientos"], ["config", "Configuración"], ["planificar", "Planificar"],
+  ["programaciones", "Programaciones"]];
+function pintarNav() {
+  $("#nav").replaceChildren(...VISTAS.map(([k, t]) =>
+    h("button", {class: estado.vista === k || (k === "programaciones" && estado.vista === "plan") ? "activo" : "",
+      onclick: () => ir(k)}, t)));
+}
+function ir(vista, extra) {
+  if (estado.vista === "plan" && estado.sucio && vista !== "plan" &&
+      !confirm("Hay cambios sin guardar en la programación. ¿Salir de todos modos?")) return;
+  estado.vista = vista; estado.sucio = false;
+  if (extra) Object.assign(estado, extra);
+  location.hash = vista === "plan" ? "plan/" + estado.prog : vista;
+  pintarNav();
+  const m = $("#main"); m.replaceChildren();
+  Promise.resolve(({inicio: vInicio, config: vConfig, planificar: vPlanificar, programaciones: vProgramaciones,
+    plan: vPlan}[vista] || vEntidad)(m, vista)).catch(e => m.append(h("div", {class: "error"}, e.message)));
+}
+window.addEventListener("beforeunload", e => { if (estado.sucio) e.preventDefault(); });
+
+// ------------------------------------------------------------------------- //
+// Formularios genéricos a partir de los esquemas
+// ------------------------------------------------------------------------- //
+function expandirFechas(txt) {
+  const out = new Set();
+  for (let x of txt.split(/[,\s]+/).filter(Boolean)) {
+    if (x.includes("..")) {
+      let [a, b] = x.split("..").map(s => new Date(s.trim() + "T12:00"));
+      if (isNaN(a) || isNaN(b)) throw new Error(`Rango no válido: ${x}`);
+      for (; a <= b; a.setDate(a.getDate() + 1)) out.add(a.toISOString().slice(0, 10));
+    } else {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(x)) throw new Error(`Fecha no válida: ${x} (use AAAA-MM-DD)`);
+      out.add(x);
+    }
+  }
+  return [...out].sort();
+}
+function control(c, valor) {
+  const id = "f_" + c.nombre;
+  let el, get;
+  switch (c.tipo) {
+    case "bool":
+      el = h("input", {type: "checkbox", id, checked: !!valor}); get = () => el.checked; break;
+    case "int": case "float":
+      el = h("input", {type: "number", id, step: c.tipo === "int" ? "1" : "any", value: valor ?? ""});
+      get = () => { if (el.value === "") { if (c.requerido) throw new Error(`'${c.etiqueta}' es obligatorio`); return c.tipo === "int" ? 0 : 0.0; }
+        return c.tipo === "int" ? parseInt(el.value) : parseFloat(el.value); };
+      break;
+    case "date": case "time":
+      el = h("input", {type: c.tipo, id, value: valor || ""}); get = () => el.value; break;
+    case "select": {
+      const ops = c.opciones.map(o => Array.isArray(o) ? o : [o, o]);
+      el = h("select", {id}, ops.map(([v, t], i) => h("option", {value: i, selected: v === valor}, String(t))));
+      get = () => ops[+el.value][0]; break;
+    }
+    case "multi": case "dias": {
+      const ops = c.tipo === "dias" ? E.dias_semana.map((t, i) => [i, t]) : c.opciones.map(o => [o, o]);
+      const cajas = ops.map(([v, t]) => [v, h("input", {type: "checkbox", checked: (valor || []).includes(v)})]);
+      el = h("div", {class: "checks"}, cajas.map(([v, cb], i) => h("label", {}, cb, String(ops[i][1]))));
+      get = () => cajas.filter(([, cb]) => cb.checked).map(([v]) => v); break;
+    }
+    case "tags": {
+      el = h("input", {id, value: (valor || []).join(", "), list: "dl_tipos", placeholder: "separados por comas"});
+      get = () => el.value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean); break;
+    }
+    case "dates":
+      el = h("textarea", {id, rows: 2, placeholder: "2026-10-05, 2026-10-10..2026-10-14"}, (valor || []).join(", "));
+      get = () => expandirFechas(el.value); break;
+    default:
+      el = h("input", {id, value: valor ?? ""});
+      get = () => { if (c.requerido && !el.value.trim()) throw new Error(`'${c.etiqueta}' es obligatorio`); return el.value; };
+  }
+  const ancho = ["multi", "dates", "dias"].includes(c.tipo) ? "ancho" : "";
+  const etiqueta = h("span", {}, c.etiqueta + (c.requerido ? " *" : ""));
+  const label = c.tipo === "bool"
+    ? h("label", {class: ancho, style: "flex-direction:row;align-items:center;gap:6px"}, el, h("span", {}, c.etiqueta))
+    : h("label", {class: ancho}, etiqueta, el, c.ayuda ? h("small", {class: "muted"}, c.ayuda) : null);
+  return {c, el, label, get};
+}
+// Mapa para elegir coordenadas con un clic; enlaza dos controles numéricos.
+function selectorCoordenadas(cLat, cLon, extras = []) {
+  const div = h("div", {class: "mapa-mini ancho"});
+  const nota = h("small", {class: "muted ancho"}, "Haga clic en el mapa para fijar la ubicación.");
+  setTimeout(() => {
+    if (!window.L) { div.replaceWith(h("small", {class: "muted"}, "(mapa no disponible sin internet)")); return; }
+    const lat = parseFloat(cLat.el.value), lon = parseFloat(cLon.el.value);
+    const centro = !isNaN(lat) && (lat || lon) ? [lat, lon] : [D.config.base_lat, D.config.base_lon];
+    const m = L.map(div).setView(centro, 11); capaBase(m);
+    for (const [la, lo, t] of extras) L.circleMarker([la, lo], {radius: 4, color: "#888"}).addTo(m).bindTooltip(t);
+    const marca = L.marker(centro, {draggable: true}).addTo(m);
+    const fijar = ll => { cLat.el.value = ll.lat.toFixed(6); cLon.el.value = ll.lng.toFixed(6); marca.setLatLng(ll); };
+    m.on("click", e => fijar(e.latlng)); marca.on("dragend", () => fijar(marca.getLatLng()));
+    for (const c of [cLat, cLon]) c.el.addEventListener("change", () => {
+      const a = parseFloat(cLat.el.value), b = parseFloat(cLon.el.value);
+      if (!isNaN(a) && !isNaN(b)) { marca.setLatLng([a, b]); m.panTo([a, b]); } });
+  }, 50);
+  return [div, nota];
+}
+function capaBase(m) {
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {maxZoom: 19, attribution: "© OpenStreetMap"}).addTo(m);
+}
+function construirForm(campos, datos, contenedor, extrasMapa = []) {
+  const ctrls = campos.map(c => control(c, datos[c.nombre]));
+  const porNombre = Object.fromEntries(ctrls.map(x => [x.c.nombre, x]));
+  const basicos = h("div", {class: "form"}), avanzados = h("div", {class: "form"});
+  for (const x of ctrls) {
+    (x.c.avanzado ? avanzados : basicos).append(x.label);
+    const m = x.c.nombre.match(/^(.*)lon$/);
+    if (m && porNombre[m[1] + "lat"]) (x.c.avanzado ? avanzados : basicos).append(...selectorCoordenadas(porNombre[m[1] + "lat"], x, extrasMapa));
+  }
+  contenedor.append(basicos);
+  if (avanzados.children.length) contenedor.append(h("details", {}, h("summary", {}, "Opciones avanzadas"), avanzados));
+  return () => Object.fromEntries(ctrls.map(x => [x.c.nombre, x.get()]));
+}
+function abrirDialogo(titulo, cuerpo, botones) {
+  $("#dlg-titulo").textContent = titulo;
+  $("#dlg-cuerpo").replaceChildren(...[cuerpo].flat());
+  $("#dlg-pie").replaceChildren(...botones);
+  if (!dlg.open) dlg.showModal();
+}
+
+// ------------------------------------------------------------------------- //
+// Inicio
+// ------------------------------------------------------------------------- //
+async function vInicio(m) {
+  const [al, progs] = await Promise.all([api("GET", "alertas"), api("GET", "programaciones")]);
+  const cuenta = n => (D[n] || []).filter(x => x.activo !== false).length;
+  const venc = al.puntos.filter(p => p.nivel === "vencido").length, prox = al.puntos.filter(p => p.nivel === "proximo").length;
+  m.append(
+    h("div", {class: "panel"}, h("div", {class: "kpis"},
+      ...[["Puntos activos", cuenta("puntos")], ["Personal", cuenta("personal")], ["Vehículos", cuenta("vehiculos")],
+        ["Equipos", cuenta("equipos")], ["Puntos vencidos", venc], ["Vencen en 30 días", prox]]
+        .map(([t, n]) => h("div", {class: "kpi"}, h("b", {}, String(n)), h("span", {}, t)))),
+      h("div", {class: "fila", style: "margin-top:14px"},
+        h("button", {class: "primario", onclick: () => ir("planificar")}, "Generar programación"),
+        progs[0] ? h("button", {onclick: () => ir("plan", {prog: progs[0].id})}, `Abrir última: ${progs[0].nombre}`) : null,
+        !D.puntos.length ? h("button", {onclick: cargarDemo}, "Cargar datos de ejemplo") : null)),
+    h("div", {class: "grid2"},
+      h("div", {class: "panel"}, h("h2", {}, "Vencimientos de personal, vehículos y equipos"),
+        al.vencimientos.length ? tabla(["", "Tipo", "Quién", "Qué", "Estado"], al.vencimientos.map(v =>
+          [h("span", {class: "chip " + v.nivel}, v.nivel === "vencido" ? "Vencido" : "Próximo"), v.grupo, v.quien, v.que, v.texto]))
+          : h("p", {class: "muted"}, "Sin vencimientos en los próximos 30 días.")),
+      h("div", {class: "panel"}, h("h2", {}, "Puntos según su frecuencia"),
+        h("div", {class: "tabla-scroll", style: "max-height:420px;overflow:auto"},
+          tabla(["Código", "Frecuencia", "Último", "Estado"], al.puntos.map(p =>
+            [p.codigo, p.frecuencia, fechaCorta(p.ultimo), h("span", {class: "chip " + p.nivel}, p.texto)]))))));
+}
+async function cargarDemo() {
+  if (!confirm("Se cargarán datos de ejemplo y reemplazarán los actuales. ¿Continuar?")) return;
+  D = await conCarga($("#main"), () => api("POST", "demo")); toast("Datos de ejemplo cargados"); ir("inicio");
+}
+function tabla(cabeceras, filas, alClic) {
+  return h("div", {class: "tabla-scroll"}, h("table", {},
+    h("thead", {}, h("tr", {}, cabeceras.map(c => h("th", {}, c)))),
+    h("tbody", {}, filas.map((f, i) => h("tr", alClic ? {class: "clic", onclick: () => alClic(i)} : {},
+      f.map(v => h("td", {}, v)))))));
+}
+
+// ------------------------------------------------------------------------- //
+// Registros (personal, vehículos, equipos, puntos, alojamientos)
+// ------------------------------------------------------------------------- //
+const COLUMNAS = {
+  personal: ["nombre", "cargo", "competencias", "conduce", "habilitado_hasta", "activo"],
+  vehiculos: ["placa", "descripcion", "capacidad", "es_4x4", "rendimiento_km_l", "costo_dia", "documentos_hasta", "activo"],
+  equipos: ["codigo", "tipo", "descripcion", "calibracion_vence", "activo"],
+  puntos: ["codigo", "nombre", "matriz", "duracion_min", "prioridad", "frecuencia", "ultimo_monitoreo", "activo"],
+  alojamientos: ["nombre", "lat", "lon", "costo_noche_persona", "activo"],
+};
+const COLOR_MATRIZ = {agua: "#2563eb", aire: "#64748b", suelo: "#92400e", ruido: "#9333ea", sedimento: "#a16207",
+  biologico: "#16a34a", efluente: "#dc2626"};
+function fmtValor(v) {
+  if (typeof v === "boolean") return v ? "Sí" : "No";
+  if (Array.isArray(v)) return v.join(", ");
+  if (typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v)) return fechaCorta(v);
+  return String(v ?? "");
+}
+function vEntidad(m, ent) {
+  const esq = E.entidades[ent], lista = D[ent];
+  const campos = Object.fromEntries(esq.campos.map(c => [c.nombre, c]));
+  const filtro = h("input", {placeholder: "Buscar…", oninput: () => pintar()});
+  const cuerpo = h("div");
+  const archivo = h("input", {type: "file", accept: ".csv,.txt", style: "display:none", onchange: importar});
+  const mapaDiv = ["puntos", "alojamientos"].includes(ent) ? h("div", {class: "mapa"}) : null;
+  m.append(h("div", {class: "panel"},
+    h("div", {class: "fila entre"}, h("h2", {}, `${esq.titulo} (${lista.length})`),
+      h("div", {class: "fila"}, filtro,
+        h("button", {class: "primario", onclick: () => editar(null)}, "+ Agregar"),
+        h("button", {onclick: () => archivo.click()}, "Importar CSV"), archivo,
+        h("a", {class: "boton", href: `/api/csv/${ent}`}, "Exportar CSV"))),
+    h("p", {class: "muted chico"}, `Haga clic en una fila para editar. El CSV exportado se puede editar en Excel y volver a importar (se actualiza por ${esq.clave}).`),
+    cuerpo), mapaDiv ? h("div", {class: "panel"}, mapaDiv) : null);
+  function pintar() {
+    const q = filtro.value.toLowerCase();
+    const vis = lista.map((x, i) => [x, i]).filter(([x]) => !q || JSON.stringify(x).toLowerCase().includes(q));
+    cuerpo.replaceChildren(tabla(COLUMNAS[ent].map(n => campos[n]?.etiqueta ?? n),
+      vis.map(([x]) => COLUMNAS[ent].map(n => n === "matriz"
+        ? h("span", {class: "chip", style: `color:${COLOR_MATRIZ[x[n]]}`}, x[n]) : fmtValor(x[n]))),
+      k => editar(vis[k][1])));
+  }
+  pintar();
+  if (mapaDiv && window.L) setTimeout(() => {
+    const mp = L.map(mapaDiv); capaBase(mp);
+    const pts = [[D.config.base_lat, D.config.base_lon]];
+    L.marker(pts[0]).addTo(mp).bindTooltip(D.config.base_nombre);
+    lista.forEach((x, i) => {
+      pts.push([x.lat, x.lon]);
+      L.circleMarker([x.lat, x.lon], {radius: 7, color: COLOR_MATRIZ[x.matriz] || "#0f766e", fillOpacity: .7,
+        opacity: x.activo === false ? .3 : 1}).addTo(mp).bindTooltip(x.codigo ? `${x.codigo} — ${x.nombre}` : x.nombre)
+        .on("click", () => editar(i));
+    });
+    mp.fitBounds(pts, {padding: [30, 30], maxZoom: 13});
+  }, 30);
+
+  function editar(i) {
+    const x = i == null ? {} : lista[i];
+    const cont = h("div");
+    if (ent === "puntos" && D.tipos_equipo.length)
+      cont.append(h("datalist", {id: "dl_tipos"}, D.tipos_equipo.map(t => h("option", {value: t}))));
+    const extras = ent === "puntos" ? D.puntos.filter(p => p !== x).map(p => [p.lat, p.lon, p.codigo]) : [];
+    const leer = construirForm(esq.campos, x, cont, extras);
+    const err = h("div");
+    cont.prepend(err);
+    abrirDialogo(i == null ? `Nuevo registro — ${esq.titulo}` : `Editar ${x[esq.clave]}`, cont, [
+      i == null ? null : h("button", {class: "peligro", onclick: async () => {
+        if (!confirm(`¿Eliminar ${x[esq.clave]}?`)) return;
+        D = await conCarga(cont, () => api("DELETE", `entidad/${ent}/${encodeURIComponent(x[esq.clave])}`));
+        dlg.close(); ir(ent);
+      }}, "Eliminar"),
+      h("button", {onclick: () => dlg.close()}, "Cancelar"),
+      h("button", {class: "primario", onclick: async () => {
+        let reg;
+        try { reg = {...x, ...leer()}; } catch (e) { err.replaceChildren(h("div", {class: "error"}, e.message)); return; }
+        try { D = await api("POST", `entidad/${ent}`, {registro: reg, original: i == null ? null : x[esq.clave]}); }
+        catch (e) { err.replaceChildren(h("div", {class: "error"}, e.message)); return; }
+        dlg.close(); toast("Guardado"); ir(ent);
+      }}, "Guardar")].filter(Boolean));
+  }
+  async function importar() {
+    const f = archivo.files[0]; if (!f) return;
+    const r = await conCarga(m, async () => api("POST", `csv/${ent}`, {texto: await f.text()}));
+    D = r.datos; ir(ent);
+    const msg = `Nuevos: ${r.nuevos} · Actualizados: ${r.actualizados} · Con error: ${r.errores.length}`;
+    if (r.errores.length) abrirDialogo("Resultado de la importación", [h("p", {}, msg),
+      h("ul", {}, r.errores.map(e => h("li", {}, e)))], [h("button", {onclick: () => dlg.close()}, "Cerrar")]);
+    else toast(msg);
+  }
+}
+
+// ------------------------------------------------------------------------- //
+// Configuración
+// ------------------------------------------------------------------------- //
+function vConfig(m) {
+  const secciones = [...new Set(E.config.map(c => c.seccion))];
+  for (const s of secciones) {
+    const cont = h("div"), err = h("div");
+    const leer = construirForm(E.config.filter(c => c.seccion === s), D.config, cont);
+    m.append(h("div", {class: "panel"}, h("h2", {}, s), err, cont,
+      h("div", {class: "fila", style: "margin-top:12px"}, h("button", {class: "primario", onclick: async () => {
+        let v; try { v = leer(); } catch (e) { err.replaceChildren(h("div", {class: "error"}, e.message)); return; }
+        err.replaceChildren();
+        D = await conCarga(cont, () => api("PUT", "config", v)); toast(`${s}: guardado`);
+      }}, "Guardar sección"))));
+  }
+}
+
+// ------------------------------------------------------------------------- //
+// Planificar
+// ------------------------------------------------------------------------- //
+function vPlanificar(m) {
+  const manana = new Date(Date.now() + 864e5).toISOString().slice(0, 10);
+  const en30 = new Date(Date.now() + 31 * 864e5).toISOString().slice(0, 10);
+  const activos = D.puntos.filter(p => p.activo);
+  const modo = h("select", {onchange: () => mostrar()},
+    [["todos", "Todos los puntos activos"], ["vencen", "Solo los que vencen hasta una fecha"],
+     ["matriz", "Por matriz"], ["codigos", "Elegir puntos"]].map(([v, t]) => h("option", {value: v}, t)));
+  const hasta = h("input", {type: "date", value: en30});
+  const matrices = control({nombre: "m", etiqueta: "Matrices", tipo: "multi",
+    opciones: [...new Set(activos.map(p => p.matriz))]}, []);
+  const cajas = activos.map(p => [p.codigo, h("input", {type: "checkbox", checked: true})]);
+  const elegir = h("div", {class: "checks"}, cajas.map(([c, cb], i) =>
+    h("label", {title: activos[i].nombre}, cb, c)));
+  const opcion = h("div");
+  function mostrar() {
+    opcion.replaceChildren(...({vencen: [h("label", {}, "Vencen hasta ", hasta)], matriz: [matrices.el],
+      codigos: [elegir]}[modo.value] || []));
+  }
+  mostrar();
+  const inicio = h("input", {type: "date", value: manana});
+  const maxDias = h("input", {type: "number", value: 30, min: 1, style: "width:90px"});
+  const nombre = h("input", {placeholder: "Programación desde…", style: "min-width:280px"});
+  const panel = h("div", {class: "panel"},
+    h("h2", {}, "Generar programación"),
+    h("div", {class: "form"},
+      h("label", {class: "ancho"}, h("span", {}, "Puntos a programar"), modo), h("div", {class: "ancho"}, opcion),
+      h("label", {}, h("span", {}, "Fecha de inicio"), inicio),
+      h("label", {}, h("span", {}, "Máximo de días de campo"), maxDias),
+      h("label", {class: "ancho"}, h("span", {}, "Nombre (opcional)"), nombre)),
+    h("p", {class: "muted chico"}, "La primera vez puede tardar si consulta las rutas en OSRM; después usa la caché."),
+    h("div", {class: "fila"}, h("button", {class: "primario", onclick: generar}, "Generar"),
+      h("button", {onclick: verMatriz}, "Ver matriz de tiempos")));
+  m.append(panel);
+  async function generar() {
+    const sel = {modo: modo.value, hasta: hasta.value, matrices: matrices.get(),
+      codigos: cajas.filter(([, cb]) => cb.checked).map(([c]) => c)};
+    toast("Planificando…", 20000);
+    const v = await conCarga(panel, () => api("POST", "planificar",
+      {seleccion: sel, fecha_inicio: inicio.value, max_dias: +maxDias.value, nombre: nombre.value}));
+    toast(`Programación creada: ${v.resumen.puntos} puntos, ${v.pendientes.length} sin programar`);
+    ir("plan", {prog: v.plan.id, vistaPlan: v});
+  }
+  async function verMatriz() {
+    const r = await conCarga(panel, () => api("GET", "matriz"));
+    const t = (titulo, mat) => [h("h3", {}, titulo), tabla(["", ...r.codigos],
+      mat.map((f, i) => [h("b", {}, r.codigos[i]), ...f.map(String)]))];
+    abrirDialogo("Matriz de tiempos y distancias", [h("p", {class: "muted"}, r.fuente),
+      ...t("Minutos (fila = origen)", r.minutos), ...t("Kilómetros", r.km)], [h("button", {onclick: () => dlg.close()}, "Cerrar")]);
+  }
+}
+
+// ------------------------------------------------------------------------- //
+// Lista de programaciones
+// ------------------------------------------------------------------------- //
+async function vProgramaciones(m) {
+  const progs = await api("GET", "programaciones");
+  m.append(h("div", {class: "panel"}, h("div", {class: "fila entre"}, h("h2", {}, "Programaciones"),
+    h("button", {class: "primario", onclick: () => ir("planificar")}, "+ Nueva")),
+    progs.length ? tabla(["Nombre", "Inicio", "Estado", "Cuadrilla-días", "Sin programar", "Modificado"],
+      progs.map(p => [p.nombre, fechaCorta(p.fecha_inicio), h("span", {class: "chip " + (p.estado === "aprobado" ? "ok" : "")},
+        E.estados_plan[p.estado] || p.estado), String(p.cuadrilla_dias), String(p.pendientes), (p.modificado || "").replace("T", " ")]),
+      i => ir("plan", {prog: progs[i].id})) : h("p", {class: "muted"}, "Aún no hay programaciones.")));
+}
+
+// ------------------------------------------------------------------------- //
+// Detalle de una programación: ajuste manual, registro de campo, mapa, exportación
+// ------------------------------------------------------------------------- //
+async function vPlan(m) {
+  let V = estado.vistaPlan && estado.vistaPlan.plan.id === estado.prog ? estado.vistaPlan
+    : await api("GET", "programacion/" + encodeURIComponent(estado.prog));
+  estado.vistaPlan = null;
+  const pid = encodeURIComponent(estado.prog);
+  const tarea = (codigo, tipo) => ({codigo, tipo, estado: "programado", hora_real: "", observacion: ""});
+  const cont = h("div");
+  m.append(cont);
+  let mapa = null, capa = null;
+
+  async function recalcular(d, ruta = "evaluar") {
+    V = await conCarga(cont, () => api("POST", `programacion/${pid}/${ruta}`, d));
+    estado.sucio = true; pintar();
+  }
+  const copia = () => structuredClone(V.plan);
+  async function guardar() {
+    V = await conCarga(cont, () => api("PUT", `programacion/${pid}`, V.plan));
+    estado.sucio = false; toast("Programación guardada"); pintar(); cargarRutas();
+  }
+  async function guardarRegistro() {
+    V = await conCarga(cont, () => api("POST", `programacion/${pid}/registro`, V.plan));
+    estado.sucio = false; toast(`Registro guardado. ${V.puntos_actualizados} punto(s) con nueva fecha de último monitoreo.`, 5000);
+    D = await api("GET", "datos"); pintar();
+  }
+
+  function pintar() {
+    const P = V.plan, R = V.resumen, C = V.cumplimiento;
+    const nombre = h("input", {value: P.nombre, style: "font-size:16px;font-weight:600;min-width:320px",
+      onchange: e => { P.nombre = e.target.value; estado.sucio = true; pintar(); }});
+    const est = h("select", {onchange: e => { P.estado = e.target.value; estado.sucio = true; pintar(); }},
+      Object.entries(E.estados_plan).map(([k, t]) => h("option", {value: k, selected: k === P.estado}, t)));
+    const destinos = V.dias.map(d => [d.indice, `${d.semana} ${fechaCorta(P.dias[d.indice].fecha)} · ${P.dias[d.indice].cuadrilla}`]);
+
+    const cabecera = h("div", {class: "panel"},
+      h("div", {class: "fila entre"}, h("div", {class: "fila"}, nombre, est,
+        estado.sucio ? h("span", {class: "sucio"}, "● cambios sin guardar") : null),
+        h("div", {class: "fila"},
+          h("button", {class: "primario", onclick: guardar}, "Guardar cambios"),
+          h("button", {onclick: guardarRegistro, title: "Guarda y actualiza la fecha de último monitoreo de los puntos ejecutados"},
+            "Guardar registro de campo"),
+          h("button", {onclick: async () => { const r = await api("POST", `programacion/${pid}/duplicar`);
+            ir("plan", {prog: r.id}); toast("Copia creada"); }}, "Duplicar"),
+          h("button", {class: "peligro", onclick: async () => { if (!confirm("¿Eliminar esta programación?")) return;
+            await api("DELETE", `programacion/${pid}`); estado.sucio = false; ir("programaciones"); }}, "Eliminar"))),
+      h("p", {class: "muted chico"}, `Inicio ${fechaCorta(P.fecha_inicio)} · ${V.fuente_tiempos}`),
+      ...V.avisos_red.map(a => h("div", {class: "aviso"}, "⚠ " + a)),
+      h("div", {class: "kpis"}, ...[
+        [R.puntos + (R.retiros ? ` +${R.retiros}` : ""), "puntos (+retiros)"], [R.dias, "días de campo"],
+        [R.cuadrillas_dia, "cuadrilla-días"], [R.noches, "noches fuera"], [R.km.toFixed(0), "km"],
+        [dinero(R.total), "costo total"], [R.avisos, "avisos"], [`${C.porcentaje}%`, `cumplimiento (${C.registradas}/${C.total} registradas)`]]
+        .map(([n, t]) => h("div", {class: "kpi"}, h("b", {}, String(n)), h("span", {}, t)))),
+      h("details", {}, h("summary", {}, "Costos, personal y flota"),
+        h("div", {class: "grid2"},
+          tabla(["Concepto", "Monto"], [["Combustible", dinero(R.combustible)], ["Vehículos", dinero(R.vehiculo)],
+            ["Viáticos", dinero(R.viaticos)], ["Alojamiento", dinero(R.alojamiento)], [h("b", {}, "Total"), h("b", {}, dinero(R.total))]]),
+          h("div", {}, tabla(["Persona", "Días", "Horas", "Noches"], R.personas.map(p => [p.nombre, String(p.dias), p.horas, String(p.noches)])),
+            tabla(["Vehículo", "Días", "Km", "Litros"], R.flota.map(f => [f.placa, String(f.dias), String(f.km), String(f.litros)]))))));
+
+    const mapaDiv = h("div", {class: "mapa"});
+    const exportar = h("div", {class: "fila"});
+    const salidas = h("div", {class: "fila", style: "margin-top:8px"});
+    for (const [f, t] of [["hojas", "Hojas de ruta"], ["xlsx", "Excel"], ["csv", "CSV"], ["mapa", "Mapa"], ["ics", "Calendario (.ics)"]])
+      exportar.append(h("button", {onclick: () => exp([f], f === "ics")}, t));
+    exportar.append(h("button", {class: "primario", onclick: () => exp(null, true)}, "Exportar todo"));
+    async function exp(formatos, icsPersonas) {
+      if (estado.sucio && !confirm("La exportación usa la versión guardada. ¿Exportar sin guardar los cambios?")) return;
+      const r = await conCarga(salidas, () => api("POST", `programacion/${pid}/exportar`, {formatos, ics_personas: icsPersonas}));
+      salidas.replaceChildren(h("span", {class: "muted chico"}, `En ${r.carpeta}:`),
+        ...r.archivos.map(a => h("a", {class: "boton", href: "/salidas/" + encodeURIComponent(a), target: "_blank"}, a)),
+        ...r.errores.map(e => h("div", {class: "error"}, e)));
+    }
+
+    const dias = V.dias.map(v => pintarDia(v, P.dias[v.indice], destinos));
+    const nuevoDia = h("button", {onclick: agregarDia}, "+ Agregar cuadrilla-día");
+    const pend = h("div", {class: "panel"}, h("h2", {}, `Sin programar (${V.pendientes.length})`),
+      V.pendientes.length ? tabla(["Punto", "Tipo", "Motivo", "Asignar a"], V.pendientes.map((t, i) => [
+        h("span", {title: t.nombre}, t.codigo), t.tipo, h("span", {class: "chico"}, t.motivo),
+        selectMover(destinos, null, k => { const d = copia(); d.pendientes.splice(i, 1);
+          d.dias[k].tareas.push(tarea(t.codigo, t.tipo)); recalcular(d); })]))
+        : h("p", {class: "muted"}, "Todos los puntos seleccionados quedaron programados."),
+      h("div", {class: "fila", style: "margin-top:10px"}, agregarPunto()));
+
+    cont.replaceChildren(cabecera,
+      h("div", {class: "panel"}, h("div", {class: "fila entre"}, h("h2", {}, "Mapa de rutas"),
+        h("span", {class: "muted chico"}, "Cada color es una cuadrilla-día")), mapaDiv),
+      h("div", {class: "panel"}, h("h2", {}, "Exportar"), exportar, salidas),
+      h("div", {class: "fila entre"}, h("h2", {style: "margin:6px 0 12px"}, "Jornadas"), nuevoDia),
+      ...dias, pend);
+    if (window.L) { mapa = L.map(mapaDiv); capaBase(mapa); capa = null; dibujarMapa(); }
+  }
+
+  function selectMover(destinos, actual, alElegir, conPendientes = false) {
+    const s = h("select", {onchange: () => { if (s.value !== "") alElegir(s.value === "P" ? "P" : +s.value); }},
+      h("option", {value: ""}, actual == null ? "Asignar…" : "Mover…"),
+      destinos.filter(([k]) => k !== actual).map(([k, t]) => h("option", {value: k}, t)),
+      conPendientes ? h("option", {value: "P"}, "→ Sin programar") : null);
+    return s;
+  }
+
+  function pintarDia(v, x, destinos) {
+    const i = v.indice;
+    const veh = h("select", {onchange: e => { const d = copia(); d.dias[i].vehiculo = e.target.value; recalcular(d); }},
+      [...new Set([x.vehiculo, ...D.vehiculos.filter(z => z.activo).map(z => z.placa)])].map(p =>
+        h("option", {value: p, selected: p === x.vehiculo}, p)));
+    const filas = x.tareas.map((t, j) => {
+      const mover = (k) => { const d = copia(); const [tt] = d.dias[i].tareas.splice(j, 1);
+        if (k === "P") d.pendientes.push({codigo: tt.codigo, tipo: tt.tipo, motivo: "quitado manualmente"});
+        else d.dias[k].tareas.push(tt);
+        recalcular(d); };
+      const subir = dir => { const d = copia(), ts = d.dias[i].tareas; [ts[j], ts[j + dir]] = [ts[j + dir], ts[j]]; recalcular(d); };
+      const campo = (k, el) => { el.addEventListener("change", () => { t[k] = el.value; estado.sucio = true; marcarSucio(); }); return el; };
+      return h("tr", {},
+        h("td", {}, h("button", {class: "mini", disabled: j === 0, onclick: () => subir(-1), title: "Subir"}, "↑"),
+          h("button", {class: "mini", disabled: j === x.tareas.length - 1, onclick: () => subir(1), title: "Bajar"}, "↓")),
+        h("td", {}, h("b", {}, t.codigo), h("div", {class: "muted chico"}, v.etiquetas[j] || t.tipo)),
+        h("td", {}, campo("estado", h("select", {}, Object.entries(E.estados_tarea).map(([k, n]) =>
+          h("option", {value: k, selected: k === (t.estado || "programado")}, n))))),
+        h("td", {}, campo("hora_real", h("input", {type: "time", value: t.hora_real || "", title: "Hora real"}))),
+        h("td", {}, campo("observacion", h("input", {value: t.observacion || "", placeholder: "Observación", style: "width:100%"}))),
+        h("td", {}, selectMover(destinos, i, mover, true)));
+    });
+    return h("div", {class: "panel dia", style: `--c:${v.color}`},
+      h("div", {class: "dia-cab"},
+        h("div", {}, h("b", {style: "font-size:15px"}, `${v.semana} ${fechaCorta(x.fecha)} · ${x.cuadrilla}`),
+          x.viaje ? h("span", {class: "chip", style: "margin-left:6px"}, "salida " + x.viaje) : null,
+          h("div", {class: "muted chico"}, `${v.origen_nombre} → ${x.tareas.map(t => t.codigo).join(" → ") || "(sin tareas)"} → ${v.destino_nombre}`),
+          h("div", {class: "muted chico"}, `${v.km} km · ${v.litros} L · ${v.duracion} · ${dinero(v.costo)}` +
+            (v.equipos.length ? ` · equipos: ${v.equipos.join(", ")}` : ""))),
+        h("div", {class: "fila"}, veh,
+          h("button", {onclick: () => editarIntegrantes(i, x)}, `👥 ${x.integrantes.length}`),
+          h("button", {onclick: () => recalcular(copia(), `optimizar/${i}`), title: "Reordenar para recorrer menos km"}, "Optimizar orden"),
+          h("button", {class: "peligro", title: "Quitar el día; sus tareas pasan a 'Sin programar'", onclick: () => {
+            const d = copia(); const [q] = d.dias.splice(i, 1);
+            d.pendientes.push(...q.tareas.map(t => ({codigo: t.codigo, tipo: t.tipo, motivo: "día eliminado"}))); recalcular(d); }}, "✕"))),
+      h("div", {class: "chico"}, x.integrantes.join(", ") || h("span", {class: "muted"}, "sin integrantes")),
+      ...v.avisos.map(a => h("div", {class: "aviso"}, "⚠ " + a)),
+      x.tareas.length ? h("table", {class: "tareas"}, h("tbody", {}, filas)) : null,
+      h("details", {}, h("summary", {}, "Línea de tiempo"), h("table", {class: "linea-tiempo"}, h("tbody", {},
+        v.eventos.map(e => h("tr", {}, h("td", {class: "muted"}, `${e.inicio}–${e.fin}`),
+          h("td", {}, e.codigo ? h("b", {}, e.actividad) : e.actividad), h("td", {class: "muted"}, e.lugar)))))));
+  }
+  function marcarSucio() {
+    const cab = cont.querySelector(".panel .fila .fila");
+    if (cab && !cab.querySelector(".sucio")) cab.append(h("span", {class: "sucio"}, "● cambios sin guardar"));
+  }
+  function personasCheck(sel) {
+    const cajas = D.personal.filter(p => p.activo || sel.includes(p.nombre)).map(p =>
+      [p.nombre, h("input", {type: "checkbox", checked: sel.includes(p.nombre)}), p]);
+    return [h("div", {class: "checks"}, cajas.map(([n, cb, p]) => h("label", {title: p.competencias.join(", ")}, cb,
+      n + (p.conduce ? " 🚗" : "")))), () => cajas.filter(([, cb]) => cb.checked).map(([n]) => n)];
+  }
+  function editarIntegrantes(i, x) {
+    const [el, leer] = personasCheck(x.integrantes);
+    abrirDialogo(`Integrantes de ${x.cuadrilla} — ${fechaCorta(x.fecha)}`, [h("p", {class: "muted chico"},
+      "🚗 = conduce. Pase el cursor sobre un nombre para ver sus competencias."), el], [
+      h("button", {onclick: () => dlg.close()}, "Cancelar"),
+      h("button", {class: "primario", onclick: () => { const d = copia(); d.dias[i].integrantes = leer(); dlg.close(); recalcular(d); }}, "Aplicar")]);
+  }
+  function agregarDia() {
+    const P = V.plan;
+    const ult = P.dias.length ? P.dias[P.dias.length - 1].fecha : P.fecha_inicio;
+    const fecha = h("input", {type: "date", value: ult});
+    const nombres = new Set(P.dias.map(d => d.cuadrilla));
+    let n = 1; while (nombres.has("C" + n)) n++;
+    const cq = h("input", {value: "C" + n, style: "width:80px"});
+    const veh = h("select", {}, D.vehiculos.filter(z => z.activo).map(z => h("option", {value: z.placa}, `${z.placa} — ${z.descripcion}`)));
+    const [el, leer] = personasCheck([]);
+    abrirDialogo("Agregar cuadrilla-día", h("div", {class: "form"},
+      h("label", {}, h("span", {}, "Fecha"), fecha), h("label", {}, h("span", {}, "Cuadrilla"), cq),
+      h("label", {class: "ancho"}, h("span", {}, "Vehículo"), veh), h("div", {class: "ancho"}, h("span", {class: "muted"}, "Integrantes"), el)), [
+      h("button", {onclick: () => dlg.close()}, "Cancelar"),
+      h("button", {class: "primario", onclick: () => {
+        const d = copia();
+        d.dias.push({fecha: fecha.value, cuadrilla: cq.value.trim() || "C" + n, vehiculo: veh.value, integrantes: leer(),
+          origen: "__BASE__", destino: "__BASE__", viaje: "", tareas: []});
+        dlg.close(); recalcular(d); }}, "Agregar")]);
+  }
+  function agregarPunto() {
+    const en = new Set([...V.plan.dias.flatMap(d => d.tareas.map(t => t.codigo)), ...V.plan.pendientes.map(t => t.codigo)]);
+    const libres = D.puntos.filter(p => p.activo && !en.has(p.codigo));
+    if (!libres.length) return null;
+    const s = h("select", {}, h("option", {value: ""}, "Agregar punto a la programación…"),
+      libres.map(p => h("option", {value: p.codigo}, `${p.codigo} — ${p.nombre}`)));
+    s.addEventListener("change", () => { if (!s.value) return; const p = D.puntos.find(z => z.codigo === s.value);
+      const d = copia(); d.pendientes.push({codigo: p.codigo, tipo: p.horas_exposicion > 0 ? "instalacion" : "muestreo",
+        motivo: "agregado manualmente"}); recalcular(d); });
+    return s;
+  }
+
+  let rutas = null;
+  async function cargarRutas() {
+    try { rutas = await api("GET", `programacion/${pid}/trazados`); dibujarMapa(); } catch (e) { /* sin rutas: puntos solos */ }
+  }
+  function dibujarMapa() {
+    if (!mapa) return;
+    if (capa) capa.remove();
+    capa = L.layerGroup().addTo(mapa);
+    const c = D.config, limites = [[c.base_lat, c.base_lon]];
+    L.marker(limites[0]).addTo(capa).bindTooltip(c.base_nombre);
+    if (c.usar_laboratorio && (c.lab_lat || c.lab_lon)) L.marker([c.lab_lat, c.lab_lon]).addTo(capa).bindTooltip(c.lab_nombre);
+    for (const a of D.alojamientos) L.circleMarker([a.lat, a.lon], {radius: 6, color: "#7c3aed"}).addTo(capa).bindTooltip("🛏 " + a.nombre);
+    // Trazado por carretera de la versión guardada; con cambios sin guardar, rectas entre paradas.
+    const conRutas = rutas && !estado.sucio && rutas.length === V.dias.length;
+    for (const v of V.dias) {
+      const r = conRutas ? rutas[v.indice] : null;
+      L.polyline(r ? r.linea : v.paradas, {color: v.color, weight: 4, opacity: .75,
+        dashArray: !r || r.recta ? "6" : null}).addTo(capa);
+    }
+    const porCod = Object.fromEntries(D.puntos.map(p => [p.codigo, p]));
+    V.dias.forEach(v => V.plan.dias[v.indice].tareas.forEach((t, j) => {
+      const p = porCod[t.codigo]; if (!p) return;
+      limites.push([p.lat, p.lon]);
+      L.circleMarker([p.lat, p.lon], {radius: 8, color: v.color, fillOpacity: .85}).addTo(capa)
+        .bindTooltip(`${p.codigo} · ${fechaCorta(V.plan.dias[v.indice].fecha)} ${V.plan.dias[v.indice].cuadrilla} #${j + 1}`);
+    }));
+    for (const t of V.pendientes) { const p = porCod[t.codigo]; if (p) { limites.push([p.lat, p.lon]);
+      L.circleMarker([p.lat, p.lon], {radius: 7, color: "#6b7280", dashArray: "3"}).addTo(capa).bindTooltip(`${p.codigo} (sin programar)`); } }
+    if (!mapa._ajustado) { mapa.fitBounds(limites, {padding: [30, 30], maxZoom: 13}); mapa._ajustado = true; }
+  }
+  pintar();
+  cargarRutas();
+}
+
+// ------------------------------------------------------------------------- //
+(async function arranque() {
+  try { [E, D] = await Promise.all([api("GET", "esquemas"), api("GET", "datos")]); }
+  catch (e) { $("#main").append(h("div", {class: "error"}, "No se pudo conectar con el programa: " + e.message)); return; }
+  const [v, id] = location.hash.slice(1).split("/");
+  ir(VISTAS.some(([k]) => k === v) || (v === "plan" && id) ? v : "inicio", id ? {prog: decodeURIComponent(id)} : undefined);
+})();
+</script>
+</body>
+</html>

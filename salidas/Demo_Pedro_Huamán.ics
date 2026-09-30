@@ -1,0 +1,76 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Planificador de Monitoreos Ambientales//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Demo
+BEGIN:VEVENT
+UID:20260929-091140-326d-20260930-C2@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20260930T070000
+DTEND:20260930T161424
+SUMMARY:Monitoreo C2: AI-02\, AI-01\, AG-01\, AG-02
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C2 · vehículo XYZ-789\nConductor: Pedro Huamán\nIn
+ tegrantes: Pedro Huamán\, Rosa Flores\, Carla Mendoza\nEquipos: MULTI-02\
+ , PM10-01\, PM10-02\n\n07:00-07:30 Preparación de equipos / charla de seg
+ uridad · Base Lima\n07:30-07:50 Traslado (11.2 km) · → AI-02\n07:50-08
+ :35 Instalación de equipo de aire (24 h) · AI-02 - Calidad de aire PM10 
+ - Callao\n08:35-09:17 Traslado (28.9 km) · → AI-01\n09:17-10:02 Instala
+ ción de equipo de aire (24 h) · AI-01 - Calidad de aire PM10 - Ate\n10:0
+ 2-10:40 Traslado (26.6 km) · → AG-01\n10:40-10:50 Acceso a pie (ida y v
+ uelta) · AG-01\n10:50-11:50 Muestreo de agua · AG-01 - Río Rímac - Cho
+ sica\n11:50-12:00 Traslado (5.4 km) · → AG-02\n12:00-12:05 Acceso a pie
+  (ida y vuelta) · AG-02\n12:05-13:05 Muestreo de agua · AG-02 - Río Rí
+ mac - Ricardo Palma\n13:05-13:50 Almuerzo · AG-02\n13:50-15:04 Traslado a
+ l laboratorio (48.0 km) · → Laboratorio acreditado (San Isidro)\n15:04-
+ 15:24 Entrega de muestras al laboratorio · Laboratorio acreditado (San Is
+ idro)\n15:24-15:44 Retorno a base (9.8 km) · → Base Lima\n15:44-16:14 D
+ escarga\, preservación y registro de muestras · Base Lima\n\nRuta: https
+ ://www.google.com/maps/dir/-12.0464\,-77.0428/-12.05\,-77.13/-12.026\,-76.
+ 918/-11.9386\,-76.697/-11.918\,-76.66/-12.097\,-77.0365/-12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Pedro Huamán;ROLE=REQ-PARTICIPANT:mailto:pedro.huaman@example.
+ com
+ATTENDEE;CN=Rosa Flores;ROLE=REQ-PARTICIPANT:mailto:rosa.flores@example.com
+ATTENDEE;CN=Carla Mendoza;ROLE=REQ-PARTICIPANT:mailto:carla.mendoza@example
+ .com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-091140-326d-20261001-C1@planificador-monitoreo
+DTSTAMP:20260929T141147Z
+DTSTART:20261001T070000
+DTEND:20261001T165741
+SUMMARY:Monitoreo C1: AI-02\, AG-04\, AG-03
+LOCATION:Base Lima
+DESCRIPTION:Cuadrilla C1 · vehículo ABC-123\nConductor: Jorge Salas\nInte
+ grantes: Jorge Salas\, Ana Quispe\, Pedro Huamán\nEquipos: MULTI-01\n\n07
+ :00-07:30 Preparación de equipos / charla de seguridad · Base Lima\n07:3
+ 0-07:50 Traslado (11.2 km) · → AI-02\n07:50-08:35 Espera (fin de exposi
+ ción 24 h) · AI-02\n08:35-09:05 Retiro de equipo y muestra de aire [PM10
+ -02] · AI-02 - Calidad de aire PM10 - Callao\n09:05-10:02 Traslado (36.8 
+ km) · → AG-04\n10:02-10:17 Acceso a pie (ida y vuelta) · AG-04\n10:17-
+ 11:17 Muestreo de agua · AG-04 - Río Chillón - Trapiche\n11:17-13:11 Tr
+ aslado (77.7 km) · → AG-03\n13:11-13:36 Acceso a pie (ida y vuelta) · 
+ AG-03\n13:36-14:21 Almuerzo · AG-03\n14:21-15:11 Muestreo de agua · AG-0
+ 3 - Quebrada Santa Eulalia\n15:11-16:27 Retorno a base (49.9 km) · → Ba
+ se Lima\n16:27-16:57 Descarga\, preservación y registro de muestras · Ba
+ se Lima\n\nRuta: https://www.google.com/maps/dir/-12.0464\,-77.0428/-12.05
+ \,-77.13/-11.813\,-76.99/-11.895\,-76.665/-12.0464\,-77.0428
+STATUS:TENTATIVE
+ATTENDEE;CN=Jorge Salas;ROLE=REQ-PARTICIPANT:mailto:jorge.salas@example.com
+ATTENDEE;CN=Ana Quispe;ROLE=REQ-PARTICIPANT:mailto:ana.quispe@example.com
+ATTENDEE;CN=Pedro Huamán;ROLE=REQ-PARTICIPANT:mailto:pedro.huaman@example.
+ com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Salida a campo
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

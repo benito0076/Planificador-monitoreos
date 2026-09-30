@@ -1,0 +1,15 @@
+﻿codigo;nombre;lat;lon;matriz;duracion_min;requiere_4x4;acceso_min;prioridad;personas_min;activo;hora_desde;hora_hasta;max_horas_preservacion;equipos;horas_exposicion;duracion_retiro_min;frecuencia;ultimo_monitoreo
+AG-01;Río Rímac - Chosica;-11,9386;-76,697;agua;60;no;10;1;2;si;;;6;multiparametro;0;30;mensual;2026-09-30
+AG-02;Río Rímac - Ricardo Palma;-11,918;-76,66;agua;60;no;5;1;2;si;;;0;multiparametro;0;30;mensual;2026-09-30
+AG-03;Quebrada Santa Eulalia;-11,895;-76,665;agua;50;si;25;2;2;si;;;0;multiparametro;0;30;trimestral;2026-09-30
+AG-04;Río Chillón - Trapiche;-11,813;-76,99;agua;60;si;15;2;2;si;;;0;multiparametro;0;30;mensual;2026-10-02
+SD-01;Sedimento Rímac - Huachipa;-12,017;-76,93;sedimento;45;no;10;2;2;si;;;0;;0;30;semestral;2026-09-30
+EF-01;Efluente planta industrial;-12,06;-77,12;efluente;40;no;0;1;2;si;09:00;12:00;0;multiparametro;0;30;mensual;2026-09-30
+AI-01;Calidad de aire PM10 - Ate;-12,026;-76,918;aire;45;no;0;1;2;si;;;0;muestreador_pm10;24;30;trimestral;2026-09-30
+AI-02;Calidad de aire PM10 - Callao;-12,05;-77,13;aire;45;no;0;2;2;si;;;0;muestreador_pm10;24;30;trimestral;2026-10-01
+RU-01;Ruido ambiental - Cercado;-12,055;-77,035;ruido;30;no;0;3;2;si;07:00;22:00;0;sonometro;0;30;semestral;2026-09-30
+RU-02;Ruido ambiental - Villa El Salvador;-12,213;-76,937;ruido;30;no;0;3;2;si;;;0;sonometro;0;30;semestral;2026-10-01
+SU-01;Suelo - Lurín;-12,275;-76,87;suelo;60;si;20;2;2;si;;;0;barreno;0;30;anual;2026-10-01
+SU-02;Suelo - Pachacámac;-12,23;-76,86;suelo;60;no;10;2;2;si;;;0;barreno;0;30;anual;2026-09-30
+AG-05;Río Lurín - Cieneguilla;-12,11;-76,81;agua;60;no;10;2;2;si;;;0;multiparametro;0;30;mensual;2026-09-19
+BI-01;Hidrobiología - Lomas de Lúcumo;-12,24;-76,83;biologico;90;si;30;3;2;si;;;0;;0;30;anual;2026-10-01

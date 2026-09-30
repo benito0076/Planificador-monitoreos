@@ -1,0 +1,242 @@
+{
+ "id": "20260929-091140-326d",
+ "nombre": "Demo",
+ "estado": "borrador",
+ "creado": "2026-09-29T09:11:40",
+ "fecha_inicio": "2026-09-30",
+ "fuente_tiempos": "OSRM por carretera (https://router.project-osrm.org) x1.2",
+ "dias": [
+  {
+   "fecha": "2026-09-30",
+   "cuadrilla": "C1",
+   "vehiculo": "ABC-123",
+   "integrantes": [
+    "Jorge Salas",
+    "Ana Quispe",
+    "María Torres"
+   ],
+   "origen": "__BASE__",
+   "destino": "__BASE__",
+   "viaje": "",
+   "tareas": [
+    {
+     "codigo": "EF-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "RU-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "RU-02",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AG-05",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "SD-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-09-30",
+   "cuadrilla": "C2",
+   "vehiculo": "XYZ-789",
+   "integrantes": [
+    "Pedro Huamán",
+    "Rosa Flores",
+    "Carla Mendoza"
+   ],
+   "origen": "__BASE__",
+   "destino": "__BASE__",
+   "viaje": "",
+   "tareas": [
+    {
+     "codigo": "AI-02",
+     "tipo": "instalacion",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AI-01",
+     "tipo": "instalacion",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AG-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AG-02",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "cuadrilla": "C1",
+   "vehiculo": "ABC-123",
+   "integrantes": [
+    "Jorge Salas",
+    "Ana Quispe",
+    "Pedro Huamán"
+   ],
+   "origen": "__BASE__",
+   "destino": "__BASE__",
+   "viaje": "",
+   "tareas": [
+    {
+     "codigo": "AI-02",
+     "tipo": "retiro",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AG-04",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AG-03",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-01",
+   "cuadrilla": "C2",
+   "vehiculo": "XYZ-789",
+   "integrantes": [
+    "Luis Rojas",
+    "Carla Mendoza",
+    "María Torres"
+   ],
+   "origen": "__BASE__",
+   "destino": "__BASE__",
+   "viaje": "",
+   "tareas": [
+    {
+     "codigo": "SU-02",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "AI-01",
+     "tipo": "retiro",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-02",
+   "cuadrilla": "C1",
+   "vehiculo": "ABC-123",
+   "integrantes": [
+    "Jorge Salas",
+    "María Torres",
+    "Ana Quispe"
+   ],
+   "origen": "__BASE__",
+   "destino": "__BASE__",
+   "viaje": "",
+   "tareas": [
+    {
+     "codigo": "BI-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "SU-01",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-05",
+   "cuadrilla": "C1",
+   "vehiculo": "ABC-123",
+   "integrantes": [
+    "Jorge Salas",
+    "María Torres",
+    "Rosa Flores"
+   ],
+   "origen": "__BASE__",
+   "destino": "@Hotel Churín",
+   "viaje": "V1",
+   "tareas": [
+    {
+     "codigo": "AG-06",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    },
+    {
+     "codigo": "SU-03",
+     "tipo": "muestreo",
+     "estado": "programado",
+     "hora_real": "",
+     "observacion": ""
+    }
+   ]
+  },
+  {
+   "fecha": "2026-10-06",
+   "cuadrilla": "C1",
+   "vehiculo": "ABC-123",
+   "integrantes": [
+    "Jorge Salas",
+    "María Torres",
+    "Rosa Flores"
+   ],
+   "origen": "@Hotel Churín",
+   "destino": "__BASE__",
+   "viaje": "V1",
+   "tareas": []
+  }
+ ],
+ "pendientes": [],
+ "modificado": "2026-09-29T09:11:40"
+}
