@@ -1,6 +1,6 @@
-echo *.exe > .gitignore
-echo venv/ >> .gitignore
-echo __pycache__/ >> .gitignore
-echo .env >> .gitignore
+*.exe
+venv/
+__pycache__/
+.env
 build/
 dist/
